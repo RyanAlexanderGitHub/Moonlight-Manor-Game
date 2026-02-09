@@ -1,7 +1,7 @@
 BUILD INSTRUCTIONS:
 
    Create 2 new directories in the same directory named Project and lib.
-   Put the GSON.jar library file in the lib directory, and the rest of the files in the Project directory.
+   Put the gson-2.10.1.jar file in the lib directory, and the rest of the files in the Project directory.
    Make sure you are able to run/download Java Swing.
 
 EXECUTION:
