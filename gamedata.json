@@ -1,0 +1,362 @@
+{
+  "startSceneId": "grounds",
+  "items": [
+    {
+      "id": "magnifyingGlass",
+      "name": "Magnifying Glass",
+      "desc": "It has a dusty lens. When held up to a light, you can just make out the number '7138' etched into the base."
+    },
+    {
+      "id": "rustyKey",
+      "name": "Rusty Key",
+      "desc": "A sturdy old iron key."
+    },
+    {
+      "id": "journalNote",
+      "name": "Journal Note",
+      "desc": "A ripped page. Scribbled fiercely are the words: 'DOWN UP DOWN'."
+    },
+    {
+      "id": "wrench",
+      "name": "Wrench",
+      "desc": "A heavy wrench."
+    },
+    {
+      "id": "brassHandle",
+      "name": "Brass Handle",
+      "desc": "A decorative brass handle. It didn't originally belong to the pantry door."
+    },
+    {
+      "id": "crypticSymbol",
+      "name": "Cryptic Symbol",
+      "desc": "A small wooden tile with the letters 'C A D' etched into it."
+    },
+    {
+      "id": "codedDossier",
+      "name": "Coded Dossier",
+      "desc": "The highly confidential document you were searching for. Your mission is complete!"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "grounds",
+      "title": "Manor Grounds",
+      "description": "The path is overgrown, leading up to an abandoned mansion. A faint light seems to be glowing from the top window.",
+      "hotspots": [
+        {
+          "id": "doorToFoyer",
+          "name": "Front Door",
+          "bounds": [380, 150, 220, 300],
+          "interactions": [
+            {
+              "type": "USE",
+              "requiredItem": null,
+              "command": "CHANGE_SCENE:foyer",
+              "feedback": "Entering the foyer."
+            }
+          ]
+        },
+        {
+          "id": "looseStone",
+          "name": "Loose Stone near Fountain",
+          "bounds": [110, 500, 100, 50],
+          "interactions": [
+            {
+              "type": "PICKUP",
+              "requiredItem": null,
+              "command": "GIVE_ITEM:magnifyingGlass",
+              "feedback": "You kicked the stone and found a Magnifying Glass. (Click the item for info)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "foyer",
+      "title": "The Grand Foyer",
+      "description": "Dust sheets cover what must have been opulent furniture. It's a mess in here.",
+      "hotspots": [
+        {
+          "id": "doorToLibrary",
+          "name": "Library Door",
+          "bounds": [80, 190, 150, 200],
+          "interactions": [
+            {
+              "type": "USE",
+              "command": "CHANGE_SCENE:library",
+              "feedback": "Heading into the Library."
+            }
+          ]
+        },
+        {
+          "id": "doorToKitchen",
+          "name": "Kitchen Door",
+          "bounds": [790, 190, 150, 200],
+          "interactions": [
+            {
+              "type": "USE",
+              "command": "CHANGE_SCENE:kitchen",
+              "feedback": "Heading into the Kitchen."
+            }
+          ]
+        },
+        {
+          "id": "doorToGrounds",
+          "name": "Front Door",
+          "bounds": [400, 500, 200, 100],
+          "interactions": [
+            {
+              "type": "USE",
+              "command": "CHANGE_SCENE:grounds",
+              "feedback": "Exiting to the Grounds."
+            }
+          ]
+        },
+        {
+          "id": "staircase",
+          "name": "Stairs to Upper Floor",
+          "bounds": [400, 150, 200, 300],
+          "interactions": [
+            {
+              "type": "USE",
+              "command": "CHANGE_SCENE:attic",
+              "feedback": "Heading up the creaking stairs."
+            },
+            {
+              "type": "EXAMINE",
+              "command": "EXAMINE_DESC:The stairs creak but seem stable enough to ascend to the attic level.",
+              "feedback": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "library",
+      "title": "Dusty Library",
+      "description": "Shelves line the walls, full of moldy, forbidden knowledge. There's a large, iron safe built into the wall.",
+      "hotspots": [
+        {
+          "id": "safe",
+          "name": "Iron Wall Safe",
+          "bounds": [140, 250, 100, 100],
+          "interactions": [
+            {
+              "type": "EXAMINE",
+              "command": "START_PUZZLE:Keypad:7138:safe:GIVE_ITEM:rustyKey",
+              "feedback": null
+            }
+          ]
+        },
+        {
+          "id": "backToFoyer",
+          "name": "Back to Foyer",
+          "bounds": [850, 250, 50, 200],
+          "interactions": [
+            {
+              "type": "USE",
+              "command": "CHANGE_SCENE:foyer",
+              "feedback": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kitchen",
+      "title": "Derelict Kitchen",
+      "description": "A once-busy kitchen, now cold and decaying. A locked pantry door stands in the corner.",
+      "hotspots": [
+        {
+          "id": "lockedPantry",
+          "name": "Locked Pantry Door",
+          "bounds": [380, 100, 150, 300],
+          "interactions": [
+            {
+              "type": "USE",
+              "requiredItem": "rustyKey",
+              "command": "ITEM_USE_RESULT:REMOVE_ITEM:rustyKey:ADD_ITEM:brassHandle:REPLACE_HOTSPOT:lockedPantry:openPantry",
+              "feedback": "You go to unlock the door, but the handle falls off. Well.. now you have a useless door handle."
+            },
+            {
+              "type": "EXAMINE",
+              "command": "EXAMINE_DESC:A solid wood pantry door, locked tight.",
+              "feedback": null
+            }
+          ]
+        },
+        {
+          "id": "doorToQuarters",
+          "name": "Door to Servant's Quarters",
+          "bounds": [800, 150, 50, 200],
+          "interactions": [
+            {
+              "type": "USE",
+              "command": "CHANGE_SCENE:servant_quarters",
+              "feedback": null
+            }
+          ]
+        },
+        {
+          "id": "backToFoyer2",
+          "name": "Back to Foyer",
+          "bounds": [200, 550, 100, 50],
+          "interactions": [
+            {
+              "type": "USE",
+              "command": "CHANGE_SCENE:foyer",
+              "feedback": null
+            }
+          ]
+        },
+        {
+          "id": "wrenchArea",
+          "name": "Loose Pipe Joint",
+          "bounds": [50, 350, 50, 50],
+          "interactions": [
+            {
+              "type": "PICKUP",
+              "command": "GIVE_ITEM:wrench",
+              "feedback": "Picked up Wrench."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "servant_quarters",
+      "title": "Servant's Quarters",
+      "description": "A cramped, dusty room. A storage box is mounted on the wall.",
+      "hotspots": [
+        {
+          "id": "tilePuzzleBox",
+          "name": "Wall Storage Box (Sliding Tiles)",
+          "bounds": [730, 90, 100, 100],
+          "interactions": [
+            {
+              "type": "EXAMINE",
+              "command": "START_PUZZLE:TilePuzzle:NONE:tilePuzzleBox:GIVE_ITEM:journalNote",
+              "feedback": "Starting the Tile Puzzle..."
+            }
+          ]
+        },
+        {
+          "id": "backToKitchen",
+          "name": "Back to Kitchen",
+          "bounds": [400, 150, 50, 200],
+          "interactions": [
+            {
+              "type": "USE",
+              "command": "CHANGE_SCENE:kitchen",
+              "feedback": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "attic",
+      "title": "The Attic",
+      "description": "The air is thin and stale. A chain-operated hatch leads to the central attic space, but the chain is rusted and stuck.",
+      "hotspots": [
+        {
+          "id": "leverMechanism",
+          "name": "Lever Mechanism (for Hatch)",
+          "bounds": [680, 330, 150, 150],
+          "interactions": [
+            {
+              "type": "EXAMINE",
+              "command": "START_PUZZLE:LeverPuzzle:DOWN_UP_DOWN:leverMechanism_hatchChain",
+              "feedback": null
+            }
+          ]
+        },
+        {
+          "id": "hatchChain",
+          "name": "Rusted Hatch Chain",
+          "bounds": [500, 150, 50, 200],
+          "interactions": [
+            {
+              "type": "EXAMINE",
+              "command": "EXAMINE_DESC:The chain is seized with rust. The adjacent lever mechanism looks like it controls the lock.",
+              "feedback": null
+            }
+          ]
+        },
+        {
+          "id": "backToFoyer3",
+          "name": "Back Downstairs",
+          "bounds": [50, 350, 50, 200],
+          "interactions": [
+            {
+              "type": "USE",
+              "command": "CHANGE_SCENE:foyer",
+              "feedback": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "attic_interior",
+      "title": "Central Attic",
+      "description": "A dark, dusty space filled with forgotten things. A single wooden desk stands in the middle.",
+      "hotspots": [
+        {
+          "id": "desk",
+          "name": "Wooden Desk",
+          "bounds": [700, 300, 150, 100],
+          "interactions": [
+            {
+              "type": "EXAMINE",
+              "command": "EXAMINE_DESC:A heavy wooden desk. There is a strange, empty slot on the top.",
+              "feedback": null
+            }
+          ]
+        },
+        {
+          "id": "itemToGet",
+          "name": "Cryptic Symbol",
+          "bounds": [580, 460, 80, 80],
+          "interactions": [
+            {
+              "type": "PICKUP",
+              "command": "GIVE_ITEM:crypticSymbol",
+              "feedback": "Found a small wooden tile."
+            }
+          ]
+        },
+        {
+          "id": "lockedDrawer",
+          "name": "Locked Drawer with Mechanism",
+          "bounds": [810, 400, 100, 50],
+          "interactions": [
+            {
+              "type": "USE",
+              "requiredItem": "brassHandle",
+              "command": "ITEM_USE_RESULT:REMOVE_ITEM:brassHandle:ADD_ITEM:NONE:REPLACE_HOTSPOT:lockedDrawer:mechanismReady",
+              "feedback": "The brass handle fits perfectly into the mechanism! Starting the final dial puzzle."
+            },
+            {
+              "type": "EXAMINE",
+              "command": "EXAMINE_DESC:The drawer is locked by a mechanism that is missing a handle.",
+              "feedback": null
+            }
+          ]
+        },
+        {
+          "id": "returnToAttic",
+          "name": "Back to Attic Entry",
+          "bounds": [50, 250, 50, 200],
+          "interactions": [
+            {
+              "type": "USE",
+              "command": "CHANGE_SCENE:attic",
+              "feedback": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
